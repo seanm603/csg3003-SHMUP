@@ -19,6 +19,7 @@ public class HeroScript : MonoBehaviour
     [Range(0, 4)]
     public int shieldLevel = 1;
 
+
     void Awake()
     {
         if (S == null)
@@ -36,6 +37,12 @@ public class HeroScript : MonoBehaviour
     {
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
+        
+        Vector3 pos = transform.position;
+        pos.x += hAxis * speed * Time.deltaTime;
+        pos.y += vAxis * speed * Time.deltaTime;
+        transform.position = pos;
 
+        transform.rotation = Quaternion.Euler(vAxis * pitchMult, hAxis * rollMult, 0);
     }
 }
