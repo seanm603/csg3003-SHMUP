@@ -38,4 +38,14 @@ public class Enemy : MonoBehaviour
         tempPos.y -= speed * Time.deltaTime;
         pos = tempPos;
     }
+
+    void OnCollisionEnter(Collision other){
+        GameObject otherGO = other.gameObject;
+        if (otherGO.GetComponent<ProjectileHero>() != null){
+            Destroy(otherGO);
+            Destroy(gameObject);
+        } else {
+            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        }
+    }
 }
